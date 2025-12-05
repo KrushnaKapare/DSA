@@ -13,6 +13,9 @@ void display();
 void add_first(int data);
 void add_last(int data);
 void add_at_pos(int data, int pos);
+int count_nodes();
+void delete_first();
+
 
 int main(void)
 {
@@ -27,6 +30,14 @@ int main(void)
     add_last(60);
     add_last(70);
     printf("\n Add last\n");
+    display();
+
+    add_at_pos(90,5);
+    printf("\n add at pos:\n");
+    display();
+    
+    delete_first();
+    printf( "\n delete first node:\n");
     display();
     
     return 0;
@@ -97,6 +108,59 @@ void add_at_pos(int data, int pos)
 {
     if(head == NULL)
     {
-        if(pos
+        if(pos== 1)
+            add_first(data);
+        else
+            printf("Invalid pos Number\n");
+    }
+    else if(pos == 1)
+        add_first(data);
+    else if(pos == count_nodes() + 1)
+        add_last(data);
+    else if(pos< 1 || pos > count_nodes()+1)
+        printf("Invalid pos number");
+    else{
+        struct node *ptr = create_node();
+        ptr->data = data;
+        struct node *trav = head;
+        for(int i =1; i<pos-1; i++)
+            trav= trav->next;
+        ptr->next = trav->next;
+        trav->next = ptr;
+    }
+}
+
+int count_nodes()
+{
+    int count = 0;
+    if(head == NULL)
+        printf("List is empty \n");
+    else
+    {
+        struct node *trav = head;
+        while(trav != NULL)
+        {
+            count++;
+            trav = trav->next;
+        }
+    }
+    return count;
+}
+
+void delete_first()
+{
+    if(head == NULL)
+        printf("List is Empty\n");
+    else if(head->next == NULL)
+    {
+        free(head);
+        head = NULL;
+    }
+    else
+    {
+        struct node *temp = head;
+        head = head->next;
+        free(temp);
+        temp = NULL;
     }
 }
