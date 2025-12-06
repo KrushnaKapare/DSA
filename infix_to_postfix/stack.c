@@ -7,7 +7,7 @@ void init_stack(stack_t *ps)
 
 void push(int data, stack_t *ps)
 {
-    ps->top;
+    ps->top++;
     ps->arr[ps->top] = data;
 }
 void pop(stack_t *ps)

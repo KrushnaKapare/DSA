@@ -17,7 +17,7 @@ int count_nodes();
 void delete_first();
 
 
-int main(void)
+int main(void) 
 {
     add_first(10);
     add_first(20);
@@ -39,7 +39,7 @@ int main(void)
     delete_first();
     printf( "\n delete first node:\n");
     display();
-    
+
     return 0;
 }
 
@@ -164,3 +164,4 @@ void delete_first()
         temp = NULL;
     }
 }
+
